@@ -1,3 +1,5 @@
+# dev file which can run tests
+
 FROM node:alpine
 
 WORKDIR '/app'

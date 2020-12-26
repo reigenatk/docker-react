@@ -1,3 +1,5 @@
+# production file
+
 #build phase
 FROM node:alpine
 WORKDIR '/app'

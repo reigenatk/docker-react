@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+
+# tag the build so we can refer to it later
+before_install:
+  - docker build -t reigenatk/docker-react -f Dockerfile.dev .
+
+# the -- -- coverage part just makes sure that the output exits
+# so that travis doesn't get stuck.
+script:
+  - docker run reigenatk/docker-react npm run test -- --coverage
