@@ -15,4 +15,6 @@ FROM nginx
 # using 'docker build .' and route the ports it will also work 
 # just as before with npm start 
 
+# tell AWS elastic beanstalk to map to port 80
+EXPOSE 80 
 COPY --from=0 /app/build /usr/share/nginx/html
