@@ -17,6 +17,7 @@ script:
 # only deploy to elastic beanstalk service if code was commited to master
 deploy:
   provider: elasticbeanstalk
+  edge: true
   region: "us-east-2"
   app: "docker"
   env: "Docker-env"
