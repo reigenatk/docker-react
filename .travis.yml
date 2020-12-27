@@ -1,3 +1,6 @@
+# this file is in the root directory and its job is to
+# tell travis CI what to do once we commit
+
 language: generic
 sudo: required
 services:
@@ -20,11 +23,13 @@ deploy:
   edge: true
   region: "us-east-2"
   app: "docker"
-  env: "Docker-env"
+  env: "Docker-env-1"
+  # s3 that is associated with our beanstalk
   bucket_name: "elasticbeanstalk-us-east-2-176545090066"
   bucket_path: "docker"
   on:
     branch: master
   # tell travisCI about our keys too to access AWS
+  # look up IAM on AWS
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
