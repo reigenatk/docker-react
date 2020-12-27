@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
   - docker
@@ -6,7 +7,24 @@ services:
 before_install:
   - docker build -t reigenatk/docker-react -f Dockerfile.dev .
 
+# run the tests first.
 # the -- -- coverage part just makes sure that the output exits
 # so that travis doesn't get stuck.
 script:
-  - docker run reigenatk/docker-react npm run test -- --coverage
+  - docker run -e CI=true reigenatk/docker-react npm run test
+
+# tell travis CI how to deploy to AWS
+# only deploy to elastic beanstalk service if code was commited to master
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-176545090066"
+  bucket_path: "docker"
+  on:
+    branch: master
+  # tell travisCI about our keys too to access AWS
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
