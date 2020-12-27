@@ -27,5 +27,4 @@ deploy:
     branch: master
   # tell travisCI about our keys too to access AWS
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY"
+  secret_access_key: $AWS_SECRET_KEY
